@@ -5,6 +5,7 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   output: process.env.VERCEL ? "standalone" : undefined,
+  outputFileTracingRoot: process.env.VERCEL ? path.join(__dirname) : undefined,
   reactStrictMode: true,
   turbopack: process.env.VERCEL
     ? undefined
