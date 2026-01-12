@@ -38,6 +38,47 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  // Middleware replacement - using redirects instead of middleware.ts
+  // This avoids the Turbopack middleware compilation bug
+  async redirects() {
+    return [
+      // Redirect locale-prefixed admin paths to canonical /admin
+      {
+        source: '/en/admin/:path*',
+        destination: '/admin/:path*',
+        permanent: false,
+      },
+      {
+        source: '/fr/admin/:path*',
+        destination: '/admin/:path*',
+        permanent: false,
+      },
+      {
+        source: '/en/admin',
+        destination: '/admin',
+        permanent: false,
+      },
+      {
+        source: '/fr/admin',
+        destination: '/admin',
+        permanent: false,
+      },
+    ];
+  },
+
+  // Default locale redirect for paths without locale prefix
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Redirect root to default locale
+        {
+          source: '/',
+          destination: '/fr',
+        },
+      ],
+    };
+  },
 };
 
 export default nextConfig;
