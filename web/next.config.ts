@@ -2,8 +2,9 @@ import type { NextConfig } from "next";
 
 import path from "path";
 
+
 const nextConfig: NextConfig = {
-  output: "standalone",
+  output: process.env.VERCEL ? "standalone" : undefined,
   reactStrictMode: true,
   turbopack: process.env.VERCEL
     ? undefined
