@@ -1,0 +1,16 @@
+﻿src/app/[locale]/collections/page.tsx(41,44): error TS2322: Type '{ id: string; slug: string; title: string; subtitle: string | null; description: string | null; heroImage: string | null; releaseDate: Date | null; productCount: number | undefined; dropWindow: { ...; } | null; }[]' is not assignable to type 'Collection[]'.
+  Type '{ id: string; slug: string; title: string; subtitle: string | null; description: string | null; heroImage: string | null; releaseDate: Date | null; productCount: number | undefined; dropWindow: { ...; } | null; }' is not assignable to type 'Collection'.
+    Types of property 'dropWindow' are incompatible.
+      Type '{ title: string; startsAt: Date; endsAt?: Date | null | undefined; } | null' is not assignable to type '{ title: string; startsAt: string | Date; endsAt: string | Date | null; } | null | undefined'.
+        Type '{ title: string; startsAt: Date; endsAt?: Date | null | undefined; }' is not assignable to type '{ title: string; startsAt: string | Date; endsAt: string | Date | null; }'.
+          Types of property 'endsAt' are incompatible.
+            Type 'Date | null | undefined' is not assignable to type 'string | Date | null'.
+              Type 'undefined' is not assignable to type 'string | Date | null'.
+src/app/[locale]/collections/page.tsx(43,40): error TS2322: Type '{ id: string; slug: string; title: string; subtitle: string | null; description: string | null; heroImage: string | null; releaseDate: Date | null; productCount: number | undefined; dropWindow: { ...; } | null; }[]' is not assignable to type 'Collection[]'.
+  Type '{ id: string; slug: string; title: string; subtitle: string | null; description: string | null; heroImage: string | null; releaseDate: Date | null; productCount: number | undefined; dropWindow: { ...; } | null; }' is not assignable to type 'Collection'.
+    Types of property 'dropWindow' are incompatible.
+      Type '{ title: string; startsAt: Date; endsAt?: Date | null | undefined; } | null' is not assignable to type '{ title: string; startsAt: string | Date; endsAt: string | Date | null; } | null | undefined'.
+        Type '{ title: string; startsAt: Date; endsAt?: Date | null | undefined; }' is not assignable to type '{ title: string; startsAt: string | Date; endsAt: string | Date | null; }'.
+          Types of property 'endsAt' are incompatible.
+            Type 'Date | null | undefined' is not assignable to type 'string | Date | null'.
+              Type 'undefined' is not assignable to type 'string | Date | null'.

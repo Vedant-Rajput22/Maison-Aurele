@@ -1,0 +1,40 @@
+﻿node.exe : Loaded 
+Prisma config from 
+prisma.config.ts.
+At C:\Program Files\n
+odejs\npx.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Loaded    
+ Prisma c...isma.    
+config.ts.:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+Prisma schema loaded 
+from 
+prisma\schema.prisma.
+Datasource "db": PostgreSQL database "neondb", schema "public" at "ep-silent-surf-a1mpkb0r-pooler.ap-southeast-1.aws.neon.tech"
+
+Error: P1001: Can't 
+reach database 
+server at `ep-silent-
+surf-a1mpkb0r-pooler.
+ap-southeast-1.aws.ne
+on.tech:5432`
+
+Please make sure 
+your database server 
+is running at `ep-sil
+ent-surf-a1mpkb0r-poo
+ler.ap-southeast-1.aw
+s.neon.tech:5432`.

@@ -1,0 +1,74 @@
+﻿
+
+ComputerName      : e
+                    p
+                    -
+                    s
+                    i
+                    l
+                    e
+                    n
+                    t
+                    -
+                    s
+                    u
+                    r
+                    f
+                    -
+                    a
+                    1
+                    m
+                    p
+                    k
+                    b
+                    0
+                    r
+                    -
+                    p
+                    o
+                    o
+                    l
+                    e
+                    r
+                    .
+                    a
+                    p
+                    -
+                    s
+                    o
+                    u
+                    t
+                    h
+                    e
+                    a
+                    s
+                    t
+                    -
+                    1
+                    .
+                    a
+                    w
+                    s
+                    .
+                    n
+                    e
+                    o
+                    n
+                    .
+                    t
+                    e
+                    c
+                    h
+RemoteAddress     : 
+NameResolutionRes : 
+InterfaceAlias    : 
+SourceAddress     : 
+NetRoute (NextHop : 
+PingSucceeded     : F
+                    a
+                    l
+                    s
+                    e
+
+
+

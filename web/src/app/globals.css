@@ -1,0 +1,216 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-maison-sans);
+  --font-display: var(--font-maison-display);
+  --color-background: var(--parchment);
+  --color-foreground: var(--espresso);
+  --color-muted: color-mix(in oklab, var(--espresso) 8%, var(--parchment));
+  --color-muted-foreground: var(--ink-soft);
+  --color-primary: var(--onyx);
+  --color-primary-foreground: var(--parchment);
+  --color-secondary: color-mix(in oklab, var(--parchment) 20%, white);
+  --color-secondary-foreground: var(--espresso);
+  --color-accent: var(--gilded-rose);
+  --color-accent-foreground: var(--onyx);
+  --color-border: color-mix(in srgb, var(--onyx) 12%, transparent);
+  --color-input: var(--color-border);
+  --color-ring: color-mix(in srgb, var(--gilded-rose) 30%, transparent);
+  --color-card: var(--parchment);
+  --color-card-foreground: var(--espresso);
+  --color-popover: var(--parchment);
+  --color-popover-foreground: var(--espresso);
+  --color-ink: var(--espresso);
+  --color-ink-muted: var(--ink-soft);
+  --color-canvas: var(--parchment);
+  --color-noir: var(--onyx);
+  --color-charcoal: var(--onyx);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-parchment: var(--parchment);
+  --color-onyx: var(--onyx);
+  --color-walnut: var(--walnut);
+  --color-ink-soft: var(--ink-soft);
+  --color-gilded-rose: var(--gilded-rose);
+}
+
+:root {
+  --radius: 0.65rem;
+  --parchment: #f6f0e6;
+  --walnut: #a8846c;
+  --espresso: #3d2f2a;
+  --ink-soft: #6d5d57;
+  --onyx: #181010;
+  --gilded-rose: #d1a982;
+  --marble: #ede6da;
+  --espresso-85: color-mix(in srgb, var(--espresso) 85%, var(--parchment));
+  --espresso-80: color-mix(in srgb, var(--espresso) 80%, var(--parchment));
+  --espresso-70: color-mix(in srgb, var(--espresso) 70%, var(--parchment));
+  --espresso-60: color-mix(in srgb, var(--espresso) 60%, var(--parchment));
+  --espresso-50: color-mix(in srgb, var(--espresso) 50%, var(--parchment));
+  --espresso-40: color-mix(in srgb, var(--espresso) 40%, var(--parchment));
+  --gilded-rose-soft: color-mix(in srgb, var(--gilded-rose) 80%, white);
+
+  --background: var(--parchment);
+  --foreground: var(--espresso);
+  --card: var(--parchment);
+  --card-foreground: var(--espresso);
+  --popover: var(--parchment);
+  --popover-foreground: var(--espresso);
+  --primary: var(--onyx);
+  --primary-foreground: var(--parchment);
+  --secondary: var(--marble);
+  --secondary-foreground: var(--espresso);
+  --muted: color-mix(in srgb, var(--parchment) 70%, white);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--gilded-rose);
+  --accent-foreground: var(--onyx);
+  --destructive: oklch(0.58 0.12 30);
+  --border: color-mix(in srgb, var(--onyx) 12%, transparent);
+  --input: var(--border);
+  --ring: color-mix(in srgb, var(--gilded-rose) 25%, transparent);
+}
+
+.dark {
+  --background: var(--onyx);
+  --foreground: var(--parchment);
+  --card: color-mix(in srgb, var(--onyx) 80%, var(--walnut));
+  --card-foreground: var(--parchment);
+  --popover: color-mix(in srgb, var(--onyx) 80%, black);
+  --popover-foreground: var(--parchment);
+  --primary: var(--gilded-rose);
+  --primary-foreground: var(--onyx);
+  --secondary: color-mix(in srgb, var(--onyx) 85%, var(--walnut));
+  --secondary-foreground: var(--parchment);
+  --muted: color-mix(in srgb, var(--onyx) 70%, var(--walnut));
+  --muted-foreground: var(--parchment);
+  --accent: var(--gilded-rose);
+  --accent-foreground: var(--onyx);
+  --border: color-mix(in srgb, var(--parchment) 10%, transparent);
+  --input: var(--border);
+  --ring: color-mix(in srgb, var(--gilded-rose) 35%, transparent);
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--gilded-rose) 30%, transparent);
+  color: var(--noir);
+}
+
+.font-display {
+  font-family: var(--font-maison-display), "Playfair Display", "Cormorant Garamond", serif;
+}
+
+.grid-frame {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in srgb, var(--gilded-rose) 20%, transparent);
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-kerning: normal;
+    font-feature-settings:
+      "liga",
+      "clig",
+      "calt",
+      "ss01",
+      "onum";
+    background-image: radial-gradient(circle at 15% 25%, rgba(209, 169, 130, 0.08), transparent 60%),
+      radial-gradient(circle at 80% 10%, rgba(165, 132, 108, 0.08), transparent 55%);
+    background-color: var(--parchment);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-opacity='0.15'%3E%3Cpath d='M0 0h1v1H0z' fill='%23bda18b'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+    mix-blend-mode: multiply;
+  }
+
+  a {
+    color: var(--espresso);
+  }
+}
+
+.lux-text {
+  color: var(--espresso);
+}
+
+.lux-text-soft {
+  color: var(--espresso-85);
+}
+
+.lux-text-muted {
+  color: var(--espresso-60);
+}
+
+.lux-text-faint {
+  color: var(--espresso-40);
+}
+
+.lux-link {
+  color: var(--espresso-70);
+  transition: color 0.3s ease;
+}
+
+.lux-link:hover {
+  color: var(--espresso);
+}
+
+.lux-button-outline {
+  color: var(--espresso);
+  border-color: color-mix(in srgb, var(--onyx) 18%, transparent);
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.lux-button-outline:hover {
+  color: var(--parchment);
+  background-color: var(--onyx);
+  border-color: var(--onyx);
+}
+
+.lux-locale-link {
+  color: var(--espresso-50);
+  transition: color 0.3s ease;
+}
+
+.lux-locale-link:hover {
+  color: var(--espresso-80);
+}
+
+.lux-locale-link.active {
+  color: var(--espresso);
+}
+
+.lux-accent {
+  color: var(--gilded-rose);
+}
+
+.lux-accent-soft {
+  color: var(--gilded-rose-soft);
+}
+
+.lux-accent-chip {
+  background-color: var(--gilded-rose);
+}
+
+.scroll-silent {
+  scrollbar-width: none;
+}
+
+.scroll-silent::-webkit-scrollbar {
+  display: none;
+}
