@@ -137,7 +137,7 @@ export function LookbookCarousel({
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(209,169,130,0.1),transparent_50%)]" />
 
       {/* Header - Fixed */}
-      <div className="absolute left-0 right-0 top-0 z-20 px-6 pt-24 md:px-12 lg:px-16">
+      <div className="absolute left-0 right-0 top-0 z-20 px-4 pt-20 sm:px-6 sm:pt-24 md:px-12 lg:px-16">
         <div className="mx-auto max-w-screen-2xl">
           <div className="flex items-end justify-between">
             <div className="max-w-2xl space-y-4">
@@ -149,7 +149,7 @@ export function LookbookCarousel({
               >
                 {data.kicker}
               </motion.p>
-              <h2 className="font-display text-4xl leading-[1.1] text-[var(--espresso)] lg:text-5xl">
+              <h2 className="font-display text-3xl leading-[1.1] text-[var(--espresso)] sm:text-4xl lg:text-5xl">
                 {headingWords.map((word, i) => (
                   <motion.span
                     key={i}
@@ -171,13 +171,12 @@ export function LookbookCarousel({
                 {data.slides.map((_, i) => (
                   <div
                     key={i}
-                    className={`h-1 w-8 rounded-full transition-all duration-500 ${
-                      i === activeIndex
+                    className={`h-1 w-8 rounded-full transition-all duration-500 ${i === activeIndex
                         ? "bg-[var(--gilded-rose)]"
                         : i < activeIndex
-                        ? "bg-[var(--espresso)]/30"
-                        : "bg-[var(--espresso)]/10"
-                    }`}
+                          ? "bg-[var(--espresso)]/30"
+                          : "bg-[var(--espresso)]/10"
+                      }`}
                   />
                 ))}
               </div>
@@ -193,14 +192,14 @@ export function LookbookCarousel({
       <div ref={containerRef} className="relative h-screen w-full overflow-hidden pt-48">
         <div
           ref={slidesRef}
-          className="flex h-full items-center gap-8 px-6 will-change-transform md:px-12"
+          className="flex h-full items-center gap-4 px-4 will-change-transform sm:gap-8 sm:px-6 md:px-12"
           style={{ width: `${data.slides.length * 85}vw` }}
         >
           {data.slides.map((slide, index) => (
             <article
               key={slide.title}
               data-lookbook-slide
-              className="relative h-[75vh] w-[75vw] flex-shrink-0 overflow-hidden rounded-[2.5rem] border border-[var(--espresso)]/10 bg-white shadow-[0_60px_180px_rgba(61,47,42,0.15)] lg:w-[60vw]"
+              className="relative h-[70vh] sm:h-[75vh] w-[85vw] sm:w-[75vw] flex-shrink-0 overflow-hidden rounded-2xl sm:rounded-[2.5rem] border border-[var(--espresso)]/10 bg-white shadow-[0_60px_180px_rgba(61,47,42,0.15)] lg:w-[60vw]"
             >
               <div className="grid h-full lg:grid-cols-[1.2fr_1fr]">
                 {/* Image */}
@@ -249,14 +248,14 @@ export function LookbookCarousel({
                   <div className="mt-auto flex flex-wrap gap-4 pt-8">
                     <Link
                       href={data.collectionSlug ? `/${locale}/collections/${data.collectionSlug}` : `/${locale}/collections`}
-                      className="group inline-flex items-center gap-2 rounded-full border border-[var(--espresso)]/20 px-6 py-3 text-[0.6rem] uppercase tracking-[0.4em] text-[var(--espresso)] transition-all hover:border-[var(--espresso)]/40 hover:bg-[var(--espresso)]/5"
+                      className="group inline-flex items-center gap-2 rounded-full border border-[var(--espresso)]/20 px-5 py-3 text-[0.6rem] uppercase tracking-[0.4em] text-[var(--espresso)] transition-all hover:border-[var(--espresso)]/40 hover:bg-[var(--espresso)]/5 min-h-[44px]"
                     >
                       <span>{locale === "fr" ? "Voir le chapitre" : "View chapter"}</span>
                       <span className="transition-transform group-hover:translate-x-1">→</span>
                     </Link>
                     <Link
                       href={`/${locale}/shop`}
-                      className="inline-flex items-center gap-2 rounded-full bg-[var(--espresso)] px-6 py-3 text-[0.6rem] uppercase tracking-[0.4em] text-[var(--parchment)] transition-all hover:bg-[var(--espresso)]/90"
+                      className="inline-flex items-center gap-2 rounded-full bg-[var(--espresso)] px-5 py-3 text-[0.6rem] uppercase tracking-[0.4em] text-[var(--parchment)] transition-all hover:bg-[var(--espresso)]/90 min-h-[44px]"
                     >
                       {locale === "fr" ? "Boutique" : "Shop"}
                     </Link>

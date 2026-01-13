@@ -111,7 +111,7 @@ export function GalleryScrollScene({ data }: { data: GalleryScrollSceneContent }
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden px-6 py-32 md:px-12 lg:px-16"
+      className="relative overflow-hidden px-4 py-20 sm:px-6 sm:py-32 md:px-12 lg:px-16"
       style={{ background: "linear-gradient(160deg, #0a0605 0%, #1a120e 50%, #0d0907 100%)" }}
     >
       {/* Decorative elements */}
@@ -121,7 +121,7 @@ export function GalleryScrollScene({ data }: { data: GalleryScrollSceneContent }
 
       <div className="mx-auto max-w-screen-2xl">
         {/* Header */}
-        <div className="mb-20 grid gap-12 lg:grid-cols-[380px_1fr]">
+        <div className="mb-12 sm:mb-20 grid gap-8 sm:gap-12 lg:grid-cols-[380px_1fr]">
           <div className="space-y-8">
             <motion.p
               initial={{ opacity: 0, x: -20 }}
@@ -131,10 +131,10 @@ export function GalleryScrollScene({ data }: { data: GalleryScrollSceneContent }
             >
               {data.kicker}
             </motion.p>
-            
+
             <h2
               ref={headingRef}
-              className="font-display text-4xl leading-[1.15] text-white lg:text-5xl"
+              className="font-display text-3xl leading-[1.15] text-white sm:text-4xl lg:text-5xl"
             >
               {headingWords.map((word, i) => (
                 <span key={i} data-heading-word className="inline-block mr-[0.3em]">
@@ -142,7 +142,7 @@ export function GalleryScrollScene({ data }: { data: GalleryScrollSceneContent }
                 </span>
               ))}
             </h2>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -174,21 +174,20 @@ export function GalleryScrollScene({ data }: { data: GalleryScrollSceneContent }
         </div>
 
         {/* Gallery Cards */}
-        <div ref={cardsRef} className="space-y-16">
+        <div ref={cardsRef} className="space-y-8 sm:space-y-16">
           {data.artworks.map((art, index) => {
             const isEven = index % 2 === 0;
-            
+
             return (
               <article
                 key={art.title}
                 data-gallery-card
-                className={`relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] shadow-[0_80px_200px_rgba(0,0,0,0.5)] backdrop-blur-sm ${
-                  isEven ? "" : "lg:ml-auto lg:max-w-[90%]"
-                }`}
+                className={`relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] border border-white/10 bg-white/[0.03] shadow-[0_80px_200px_rgba(0,0,0,0.5)] backdrop-blur-sm ${isEven ? "" : "lg:ml-auto lg:max-w-[90%]"
+                  }`}
               >
                 <div className={`grid gap-0 ${isEven ? "lg:grid-cols-[480px_1fr]" : "lg:grid-cols-[1fr_480px]"}`}>
                   {/* Image */}
-                  <div className={`relative h-[400px] overflow-hidden lg:h-[500px] ${!isEven ? "lg:order-2" : ""}`}>
+                  <div className={`relative h-[280px] sm:h-[400px] overflow-hidden lg:h-[500px] ${!isEven ? "lg:order-2" : ""}`}>
                     <div data-gallery-image className="absolute inset-0 will-change-transform">
                       <Image
                         src={art.image}
@@ -201,7 +200,7 @@ export function GalleryScrollScene({ data }: { data: GalleryScrollSceneContent }
                     {/* Image overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                     <div className={`absolute inset-0 bg-gradient-to-${isEven ? 'r' : 'l'} from-transparent to-black/40`} />
-                    
+
                     {/* Chapter indicator */}
                     <div className="absolute bottom-6 left-6 flex items-center gap-4">
                       <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-xs text-white/80">
@@ -216,13 +215,13 @@ export function GalleryScrollScene({ data }: { data: GalleryScrollSceneContent }
                   {/* Content */}
                   <div
                     data-gallery-content
-                    className={`flex flex-col justify-between gap-8 px-8 py-10 lg:px-12 lg:py-14 ${!isEven ? "lg:order-1" : ""}`}
+                    className={`flex flex-col justify-between gap-6 sm:gap-8 px-5 py-6 sm:px-8 sm:py-10 lg:px-12 lg:py-14 ${!isEven ? "lg:order-1" : ""}`}
                   >
                     <div className="space-y-6">
                       <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[var(--gilded-rose)]">
                         Étape {String(index + 1).padStart(2, "0")}
                       </p>
-                      <h3 className="font-display text-3xl text-white lg:text-4xl">{art.title}</h3>
+                      <h3 className="font-display text-2xl text-white sm:text-3xl lg:text-4xl">{art.title}</h3>
                       <p className="text-base leading-relaxed text-white/70">{art.body}</p>
                     </div>
 

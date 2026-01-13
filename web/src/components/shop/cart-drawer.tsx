@@ -165,7 +165,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
           )}
         </div>
 
-        <div className="border-t border-white/10 px-4 py-4 sm:px-8 sm:py-6">
+        <div className="flex-shrink-0 border-t border-white/10 bg-[#0c0c0c] px-4 py-4 sm:px-8 sm:py-6">
           <div className="flex items-center justify-between text-sm uppercase tracking-[0.35em] text-white/60">
             <span>{locale === "fr" ? "Sous-total" : "Subtotal"}</span>
             <span className="text-white">{formatPrice(cart.subtotalCents)}</span>
