@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
-import { getCartSnapshot, clearCartAction } from "@/lib/cart/actions";
+import { getCartSnapshot } from "@/lib/cart/actions";
 import { CartPageClient } from "@/components/cart/cart-page-client";
 import { getUserAddresses } from "@/lib/address/actions";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -18,12 +18,7 @@ export default async function CartPage({
 }) {
   const resolved = await params;
   const locale = resolved.locale;
-
-  // Handle checkout success - clear cart session
   const resolvedSearch = searchParams ? await searchParams : {};
-  if (resolvedSearch.checkout === "success") {
-    await clearCartAction();
-  }
 
   const [cart, user, addresses] = await Promise.all([
     getCartSnapshot(locale),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import {
   removeCartItemAction,
 } from "@/lib/cart/actions";
 import { startCheckoutAction } from "@/lib/checkout/actions";
+import { clearCartSessionAction } from "@/lib/cart/clear-session-action";
 import { AddressForm, AddressModal } from "@/components/account/address-components";
 
 type Props = {
@@ -24,6 +25,17 @@ type Props = {
 
 export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: initialAddresses, checkoutSuccess }: Props) {
   const router = useRouter();
+
+  // Clear cart session on checkout success
+  useEffect(() => {
+    if (checkoutSuccess) {
+      clearCartSessionAction().then(() => {
+        // Optionally refresh the page to get updated cart state
+        router.refresh();
+      });
+    }
+  }, [checkoutSuccess, router]);
+
   const [cart, setCart] = useState(initialCart);
   const [addresses] = useState(initialAddresses);
   const [pendingId, setPendingId] = useState<string | null>(null);
