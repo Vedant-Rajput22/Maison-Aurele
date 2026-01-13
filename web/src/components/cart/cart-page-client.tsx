@@ -19,9 +19,10 @@ type Props = {
   initialCart: CartSnapshot;
   isLoggedIn: boolean;
   addresses: Address[];
+  checkoutSuccess?: boolean;
 };
 
-export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: initialAddresses }: Props) {
+export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: initialAddresses, checkoutSuccess }: Props) {
   const router = useRouter();
   const [cart, setCart] = useState(initialCart);
   const [addresses] = useState(initialAddresses);
@@ -85,6 +86,26 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
               : "Each order is prepared in the Paris atelier, hand packed, and delivered by our partner concierge service."}
           </p>
         </header>
+
+        {/* Checkout Success Banner */}
+        {checkoutSuccess && (
+          <div className="rounded-2xl border border-green-500/30 bg-green-500/10 p-6 text-center">
+            <p className="text-lg font-display text-green-400">
+              {locale === "fr" ? "Commande confirmée !" : "Order confirmed!"}
+            </p>
+            <p className="mt-2 text-sm text-white/70">
+              {locale === "fr"
+                ? "Merci pour votre commande. Vous recevrez un email de confirmation sous peu."
+                : "Thank you for your order. You will receive a confirmation email shortly."}
+            </p>
+            <Link
+              href={`/${locale}/account`}
+              className="mt-4 inline-block rounded-full border border-white/30 px-6 py-3 text-xs uppercase tracking-[0.4em] text-white hover:border-white/60"
+            >
+              {locale === "fr" ? "Voir mes commandes" : "View my orders"}
+            </Link>
+          </div>
+        )}
 
         <section className="space-y-6 sm:space-y-8 rounded-2xl sm:rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#151628] via-[#0c0e19] to-[#05070d] p-4 sm:p-6 md:p-10 shadow-[0_40px_180px_rgba(2,3,12,0.65)]">
           {isEmpty ? (
@@ -417,8 +438,8 @@ function AddressSelectCard({
       <div className="absolute right-4 top-4">
         <div
           className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all ${selected
-              ? "border-white bg-white"
-              : "border-white/30 group-hover:border-white/50"
+            ? "border-white bg-white"
+            : "border-white/30 group-hover:border-white/50"
             }`}
         >
           {selected && (

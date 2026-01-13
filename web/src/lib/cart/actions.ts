@@ -301,3 +301,13 @@ function mapCartToSnapshot(cart: Awaited<ReturnType<typeof loadCartWithLocale>>)
     items,
   };
 }
+
+/**
+ * Clears the cart session cookie. Should be called after successful checkout
+ * to ensure old cart data doesn't reappear.
+ */
+export async function clearCartAction(): Promise<void> {
+  const { clearCartSession } = await import("./session");
+  await clearCartSession();
+}
+

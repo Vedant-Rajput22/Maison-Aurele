@@ -1,20 +1,30 @@
 import type { Locale } from "@/lib/i18n/config";
-import { getCartSnapshot } from "@/lib/cart/actions";
+import { getCartSnapshot, clearCartAction } from "@/lib/cart/actions";
 import { CartPageClient } from "@/components/cart/cart-page-client";
 import { getUserAddresses } from "@/lib/address/actions";
 import { getCurrentUser } from "@/lib/auth/session";
 
 type LocaleParams = { locale: Locale } | Promise<{ locale: Locale }>;
+type SearchParams = { checkout?: string; session_id?: string } | Promise<{ checkout?: string; session_id?: string }>;
 
 export const revalidate = 0;
 
 export default async function CartPage({
   params,
+  searchParams,
 }: {
   params: LocaleParams;
+  searchParams?: SearchParams;
 }) {
   const resolved = await params;
   const locale = resolved.locale;
+
+  // Handle checkout success - clear cart session
+  const resolvedSearch = searchParams ? await searchParams : {};
+  if (resolvedSearch.checkout === "success") {
+    await clearCartAction();
+  }
+
   const [cart, user, addresses] = await Promise.all([
     getCartSnapshot(locale),
     getCurrentUser(),
@@ -27,6 +37,7 @@ export default async function CartPage({
       initialCart={cart}
       isLoggedIn={!!user}
       addresses={addresses}
+      checkoutSuccess={resolvedSearch.checkout === "success"}
     />
   );
 }
