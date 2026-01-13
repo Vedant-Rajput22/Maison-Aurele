@@ -69,7 +69,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full max-w-[100vw] sm:max-w-lg flex-col overscroll-contain bg-[#0c0c0c] text-white transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"
+        className={`absolute right-0 top-0 flex h-full w-full max-w-[100vw] sm:max-w-lg flex-col overflow-hidden overscroll-contain bg-[#0c0c0c] text-white transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-4 sm:px-8 sm:py-6">
@@ -84,7 +84,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-4 pb-6 pt-4 sm:px-8">
+        <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-6 pt-4 sm:px-8">
           {isEmpty ? (
             <div className="flex flex-1 flex-col items-center justify-center text-center text-white/60">
               <p className="text-sm uppercase tracking-[0.5em]">{locale === "fr" ? "Votre selection est vide" : "Your selection is empty"}</p>
