@@ -70,13 +70,13 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
   };
 
   return (
-    <div className="min-h-screen bg-[#05070d] px-6 pb-24 pt-32 text-white md:px-12">
+    <div className="min-h-screen bg-[#05070d] px-4 pb-24 pt-24 text-white sm:px-6 sm:pt-32 md:px-12">
       <div className="mx-auto max-w-5xl space-y-16">
         <header className="text-center text-white">
           <p className="text-[0.65rem] uppercase tracking-[0.55em] text-white/60">
             {locale === "fr" ? "Panier Maison Aurele" : "Maison Aurele Cart"}
           </p>
-          <h1 className="mt-4 font-display text-5xl text-white">
+          <h1 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl text-white">
             {locale === "fr" ? "Livraison sur mesure" : "White glove delivery"}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm text-white/70">
@@ -86,7 +86,7 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
           </p>
         </header>
 
-        <section className="space-y-8 rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#151628] via-[#0c0e19] to-[#05070d] p-10 shadow-[0_40px_180px_rgba(2,3,12,0.65)]">
+        <section className="space-y-6 sm:space-y-8 rounded-2xl sm:rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#151628] via-[#0c0e19] to-[#05070d] p-4 sm:p-6 md:p-10 shadow-[0_40px_180px_rgba(2,3,12,0.65)]">
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center space-y-4 py-20 text-center text-white/70">
               <p className="text-sm uppercase tracking-[0.5em]">
@@ -108,9 +108,9 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
             cart.items.map((item) => (
               <article
                 key={item.id}
-                className="flex flex-col gap-6 rounded-[2.5rem] border border-white/10 bg-white/5 p-6 text-white md:flex-row"
+                className="flex flex-col gap-4 sm:gap-6 rounded-xl sm:rounded-[2.5rem] border border-white/10 bg-white/5 p-4 sm:p-6 text-white md:flex-row"
               >
-                <div className="relative h-48 w-full overflow-hidden rounded-3xl bg-white/10 md:h-44 md:w-48">
+                <div className="relative h-40 w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-white/10 md:h-44 md:w-48">
                   {item.heroImage && (
                     <Image
                       src={item.heroImage}
@@ -126,7 +126,7 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <Link
                         href={`/${locale}/products/${item.productSlug}`}
-                        className="font-display text-2xl text-white hover:opacity-80"
+                        className="font-display text-xl sm:text-2xl text-white hover:opacity-80"
                       >
                         {item.productName}
                       </Link>
@@ -142,7 +142,7 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
                     <div className="flex items-center gap-4">
                       <button
                         onClick={() => mutateQuantity(item.id, item.quantity - 1)}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-sm"
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-sm min-w-[44px] min-h-[44px]"
                         disabled={isPending && pendingId === item.id}
                       >
                         -
@@ -152,7 +152,7 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
                       </span>
                       <button
                         onClick={() => mutateQuantity(item.id, item.quantity + 1)}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-sm"
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-sm min-w-[44px] min-h-[44px]"
                         disabled={isPending && pendingId === item.id}
                       >
                         +
@@ -180,7 +180,7 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
         {!isEmpty && (
           <>
             {/* Address Selection Section */}
-            <section className="rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#11121c] via-[#0b0c16] to-[#05060b] p-10 shadow-[0_45px_200px_rgba(5,5,9,0.6)]">
+            <section className="rounded-2xl sm:rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#11121c] via-[#0b0c16] to-[#05060b] p-4 sm:p-6 md:p-10 shadow-[0_45px_200px_rgba(5,5,9,0.6)]">
               <p className="text-[0.6rem] uppercase tracking-[0.55em] text-white/60">
                 {locale === "fr" ? "Adresse de livraison" : "Shipping Address"}
               </p>
@@ -275,7 +275,7 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
             </section>
 
             {/* Summary Section */}
-            <section className="rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#11121c] via-[#0b0c16] to-[#05060b] p-10 text-white shadow-[0_45px_200px_rgba(5,5,9,0.6)]">
+            <section className="rounded-2xl sm:rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#11121c] via-[#0b0c16] to-[#05060b] p-4 sm:p-6 md:p-10 text-white shadow-[0_45px_200px_rgba(5,5,9,0.6)]">
               <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="text-[0.6rem] uppercase tracking-[0.55em] text-white/60">
@@ -357,9 +357,9 @@ export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: ini
         } else {
           setCheckoutMessage(
             result.error ??
-              (locale === "fr"
-                ? "Impossible de lancer le paiement."
-                : "Unable to start checkout.")
+            (locale === "fr"
+              ? "Impossible de lancer le paiement."
+              : "Unable to start checkout.")
           );
         }
       })
@@ -407,21 +407,19 @@ function AddressSelectCard({
       onClick={onSelect}
       className={`
         group relative w-full rounded-2xl border p-5 text-left transition-all duration-300
-        ${
-          selected
-            ? "border-white/40 bg-white/10 ring-1 ring-white/20"
-            : "border-white/10 bg-white/5 hover:border-white/25"
+        ${selected
+          ? "border-white/40 bg-white/10 ring-1 ring-white/20"
+          : "border-white/10 bg-white/5 hover:border-white/25"
         }
       `}
     >
       {/* Selection indicator */}
       <div className="absolute right-4 top-4">
         <div
-          className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all ${
-            selected
+          className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all ${selected
               ? "border-white bg-white"
               : "border-white/30 group-hover:border-white/50"
-          }`}
+            }`}
         >
           {selected && (
             <svg

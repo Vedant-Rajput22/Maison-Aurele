@@ -34,24 +34,24 @@ export function WishlistDrawer({
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <aside
-        className={`absolute left-0 top-0 h-full w-full max-w-lg border-r border-white/10 bg-[#111111] text-white transition-transform duration-500 ${open ? "translate-x-0" : "-translate-x-full"
+        className={`absolute left-0 top-0 h-full w-full max-w-[100vw] sm:max-w-lg border-r border-white/10 bg-[#111111] text-white transition-transform duration-500 ${open ? "translate-x-0" : "-translate-x-full"
           }`}
       >
-        <div className="flex items-center justify-between border-b border-white/10 px-8 py-6">
+        <div className="flex items-center justify-between border-b border-white/10 px-4 py-4 sm:px-8 sm:py-6">
           <div>
             <p className="text-[0.6rem] uppercase tracking-[0.5em] text-white/50">
               {locale === "fr" ? "Souhaits" : "Wishlist"}
             </p>
-            <h2 className="font-display text-3xl">
+            <h2 className="font-display text-2xl sm:text-3xl">
               {locale === "fr" ? "Mes desirables" : "Keepsakes"}
             </h2>
           </div>
-          <button onClick={onClose} className="rounded-full border border-white/20 p-2 text-white/70 hover:text-white">
-            <X />
+          <button onClick={onClose} className="rounded-full border border-white/20 p-3 text-white/70 hover:text-white min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <X size={20} />
           </button>
         </div>
 
-        <div className="flex h-[calc(100%-180px)] flex-col overflow-y-auto px-8 py-6">
+        <div className="flex h-[calc(100%-160px)] sm:h-[calc(100%-180px)] flex-col overflow-y-auto px-4 py-4 sm:px-8 sm:py-6">
           {isEmpty ? (
             <div className="flex flex-1 flex-col items-center justify-center text-center text-white/60">
               <p className="text-sm uppercase tracking-[0.5em]">
@@ -66,8 +66,8 @@ export function WishlistDrawer({
           ) : (
             <ul className="space-y-6">
               {wishlist.items.map((product) => (
-                <li key={product.productId} className="flex gap-4 rounded-3xl border border-white/10 p-4">
-                  <div className="relative h-24 w-24 overflow-hidden rounded-2xl bg-black/30">
+                <li key={product.productId} className="flex gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-white/10 p-3 sm:p-4">
+                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 overflow-hidden rounded-xl sm:rounded-2xl bg-black/30">
                     {product.heroImage && (
                       <Image
                         src={product.heroImage}
@@ -85,7 +85,7 @@ export function WishlistDrawer({
                       </p>
                       <Link
                         href={`/${locale}/products/${product.slug}`}
-                        className="font-display text-xl text-white hover:opacity-80"
+                        className="font-display text-base sm:text-xl text-white hover:opacity-80"
                       >
                         {product.name}
                       </Link>
@@ -96,7 +96,7 @@ export function WishlistDrawer({
                       <button
                         onClick={() => onRemove(product.productId)}
                         disabled={pending && pendingId === product.productId}
-                        className="rounded-full border border-white/20 px-4 py-1 text-white/70 hover:text-white disabled:opacity-50"
+                        className="rounded-full border border-white/20 px-4 py-2 text-white/70 hover:text-white disabled:opacity-50 min-h-[44px]"
                       >
                         {locale === "fr" ? "Retirer" : "Remove"}
                       </button>
@@ -107,7 +107,7 @@ export function WishlistDrawer({
             </ul>
           )}
         </div>
-        <div className="border-t border-white/10 px-8 py-6 text-xs text-white/50">
+        <div className="border-t border-white/10 px-4 py-4 sm:px-8 sm:py-6 text-xs text-white/50">
           {locale === "fr"
             ? "Vos favoris sont partages avec votre conseiller en boutique."
             : "Favorites sync with your concierge appointment."}

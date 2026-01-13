@@ -95,7 +95,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
       {/* Top newsletter section */}
       <div className="relative border-b border-white/5">
-        <div className="mx-auto max-w-screen-2xl px-6 py-16 md:px-12">
+        <div className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 sm:py-16 md:px-12">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -105,7 +105,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
               <p className="text-[0.55rem] uppercase tracking-[0.7em] text-[var(--gilded-rose)]">
                 {locale === "fr" ? "Restez informé" : "Stay informed"}
               </p>
-              <h3 className="mt-3 font-display text-3xl leading-tight text-white md:text-4xl">
+              <h3 className="mt-3 font-display text-2xl leading-tight text-white sm:text-3xl md:text-4xl">
                 {locale === "fr"
                   ? "Rejoignez le cercle Aurèle"
                   : "Join the Aurèle circle"}
@@ -130,7 +130,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
               />
               <button
                 type="submit"
-                className="group relative overflow-hidden rounded-full border border-white/20 bg-white/5 px-8 py-4 text-[0.6rem] uppercase tracking-[0.4em] text-white transition-all duration-500 hover:border-[var(--gilded-rose)] hover:bg-[var(--gilded-rose)]/10"
+                className="group relative overflow-hidden rounded-full border border-white/20 bg-white/5 px-6 py-4 text-[0.6rem] uppercase tracking-[0.4em] text-white transition-all duration-500 hover:border-[var(--gilded-rose)] hover:bg-[var(--gilded-rose)]/10 min-h-[44px] sm:px-8"
               >
                 {locale === "fr" ? "S'inscrire" : "Subscribe"}
               </button>
@@ -140,11 +140,11 @@ export function SiteFooter({ locale }: { locale: Locale }) {
       </div>
 
       {/* Main footer content */}
-      <div className="relative mx-auto max-w-screen-2xl px-6 py-16 md:px-12">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
+      <div className="relative mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 sm:py-16 md:px-12">
+        <div className="grid gap-8 sm:gap-12 grid-cols-2 md:grid-cols-2 lg:grid-cols-6">
           {/* Brand column */}
-          <div data-footer-column className="lg:col-span-2">
-            <Link href={`/${locale}`} className="font-display text-xl tracking-[0.5em] text-white">
+          <div data-footer-column className="col-span-2 lg:col-span-2">
+            <Link href={`/${locale}`} className="font-display text-lg sm:text-xl tracking-[0.5em] text-white">
               Maison Aurèle
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/40">
@@ -161,7 +161,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition-all duration-300 hover:border-[var(--gilded-rose)]/50 hover:text-[var(--gilded-rose)]"
+                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/50 transition-all duration-300 hover:border-[var(--gilded-rose)]/50 hover:text-[var(--gilded-rose)] min-w-[44px] min-h-[44px]"
                 >
                   <span className="text-[0.5rem] uppercase tracking-wider">
                     {social.label.slice(0, 2)}
@@ -224,7 +224,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
       {/* Bottom bar */}
       <div className="relative border-t border-white/5">
-        <div className="mx-auto flex max-w-screen-2xl flex-col items-center gap-6 px-6 py-8 md:flex-row md:justify-between md:px-12">
+        <div className="mx-auto flex max-w-screen-2xl flex-col items-center gap-4 px-4 py-6 sm:gap-6 sm:px-6 sm:py-8 md:flex-row md:justify-between md:px-12">
           {/* Copyright */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-[0.5rem] uppercase tracking-[0.4em] text-white/30 md:justify-start">
             <span>© {new Date().getFullYear()} Maison Aurèle</span>

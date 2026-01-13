@@ -118,10 +118,10 @@ export function ShopFilterDrawer({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-0 right-0 top-0 z-50 w-full max-w-md overflow-hidden bg-white shadow-2xl"
+            className="fixed bottom-0 right-0 top-0 z-50 w-full max-w-[100vw] sm:max-w-md overflow-hidden bg-white shadow-2xl"
           >
             {/* Header */}
-            <div className="border-b border-[var(--espresso)]/10 px-6 py-6">
+            <div className="border-b border-[var(--espresso)]/10 px-4 py-5 sm:px-6 sm:py-6">
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-3">
@@ -136,7 +136,7 @@ export function ShopFilterDrawer({
                 </div>
                 <button
                   onClick={onClose}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--espresso)]/15 text-[var(--espresso)]/60 transition-all hover:border-[var(--espresso)]/30 hover:text-[var(--espresso)]"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--espresso)]/15 text-[var(--espresso)]/60 transition-all hover:border-[var(--espresso)]/30 hover:text-[var(--espresso)] min-w-[44px] min-h-[44px]"
                 >
                   <X size={18} />
                 </button>
@@ -164,7 +164,7 @@ export function ShopFilterDrawer({
             </div>
 
             {/* Filter Sections */}
-            <div className="h-[calc(100%-200px)] overflow-y-auto px-6 py-4">
+            <div className="h-[calc(100%-200px)] overflow-y-auto px-4 py-4 sm:px-6">
               {(Object.keys(options) as FilterKey[]).map((section) => {
                 const sectionOptions = options[section];
                 const isExpanded = expandedSections.has(section);
@@ -220,7 +220,7 @@ export function ShopFilterDrawer({
                                   whileHover={{ scale: 1.02 }}
                                   whileTap={{ scale: 0.98 }}
                                   className={cn(
-                                    "relative flex items-center gap-2 rounded-full px-4 py-2.5 text-[0.65rem] uppercase tracking-[0.3em] transition-all",
+                                    "relative flex items-center gap-2 rounded-full px-4 py-3 text-[0.65rem] uppercase tracking-[0.3em] transition-all min-h-[44px]",
                                     isActive
                                       ? "bg-[var(--espresso)] text-white"
                                       : "border border-[var(--espresso)]/15 text-[var(--espresso)]/70 hover:border-[var(--espresso)]/30 hover:text-[var(--espresso)]"
@@ -256,17 +256,17 @@ export function ShopFilterDrawer({
             </div>
 
             {/* Footer */}
-            <div className="absolute bottom-0 left-0 right-0 border-t border-[var(--espresso)]/10 bg-white px-6 py-5">
+            <div className="absolute bottom-0 left-0 right-0 border-t border-[var(--espresso)]/10 bg-white px-4 py-4 sm:px-6 sm:py-5">
               <div className="flex items-center justify-between gap-4">
                 <button
                   onClick={onClear}
-                  className="rounded-full border border-[var(--espresso)]/20 px-5 py-3 text-[0.65rem] uppercase tracking-[0.35em] text-[var(--espresso)]/70 transition-all hover:border-[var(--espresso)]/40 hover:text-[var(--espresso)]"
+                  className="rounded-full border border-[var(--espresso)]/20 px-4 py-3 text-[0.65rem] uppercase tracking-[0.35em] text-[var(--espresso)]/70 transition-all hover:border-[var(--espresso)]/40 hover:text-[var(--espresso)] min-h-[44px]"
                 >
                   {copy.clearAll}
                 </button>
                 <button
                   onClick={onClose}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[var(--espresso)] px-6 py-3.5 text-[0.65rem] uppercase tracking-[0.35em] text-white transition-all hover:bg-[var(--onyx)]"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[var(--espresso)] px-6 py-3.5 text-[0.65rem] uppercase tracking-[0.35em] text-white transition-all hover:bg-[var(--onyx)] min-h-[44px]"
                 >
                   {copy.show} {resultCount} {copy.pieces}
                 </button>

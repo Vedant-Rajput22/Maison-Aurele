@@ -142,7 +142,7 @@ export function SiteHeader({ locale, user }: { locale: Locale; user: HeaderUser 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className={cn(
-              "group relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border text-sm transition-all duration-300",
+              "group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border text-sm transition-all duration-300 min-w-[44px] min-h-[44px]",
               useDarkText
                 ? "border-[var(--espresso)]/10 text-[var(--espresso)] hover:border-[var(--espresso)]/30 hover:bg-[var(--espresso)]/5"
                 : "border-white/20 text-white hover:border-white/40 hover:bg-white/5",
@@ -156,7 +156,7 @@ export function SiteHeader({ locale, user }: { locale: Locale; user: HeaderUser 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className={cn(
-              "group relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border text-sm transition-all duration-300",
+              "group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border text-sm transition-all duration-300 min-w-[44px] min-h-[44px]",
               useDarkText
                 ? "border-[var(--espresso)]/10 text-[var(--espresso)] hover:border-[var(--espresso)]/30 hover:bg-[var(--espresso)]/5"
                 : "border-white/20 text-white hover:border-white/40 hover:bg-white/5",
@@ -201,7 +201,7 @@ export function SiteHeader({ locale, user }: { locale: Locale; user: HeaderUser 
               animate={{ scale: 1 }}
               onClick={() => setCartOpen(true)}
               className={cn(
-                "relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300",
+                "relative flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 min-w-[44px] min-h-[44px]",
                 scrolled
                   ? "border-[var(--gilded-rose)]/30 bg-[var(--gilded-rose)]/10 text-[var(--gilded-rose)]"
                   : "border-white/30 bg-white/10 text-white",
@@ -775,14 +775,14 @@ function MobileNavDrawer({ locale, open, onClose }: { locale: Locale; open: bool
     <div className={`fixed inset-0 z-30 transition ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}>
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <div
-        className={`absolute left-1/2 top-14 w-[90vw] max-w-sm -translate-x-1/2 rounded-3xl border border-white/15 bg-[#050505] p-8 text-white shadow-2xl transition-all ${open ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        className={`absolute left-1/2 top-16 w-[94vw] max-w-sm -translate-x-1/2 rounded-2xl sm:rounded-3xl border border-white/15 bg-[#050505] p-6 sm:p-8 text-white shadow-2xl transition-all ${open ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
       >
         <div className="flex items-center justify-between">
           <p className="text-[0.6rem] uppercase tracking-[0.5em] text-white/60">{locale === "fr" ? "Navigation" : "Navigation"}</p>
           <button
             onClick={onClose}
-            className="rounded-full border border-white/20 px-3 py-1 text-xs uppercase tracking-[0.4em] text-white/70 hover:text-white"
+            className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/70 hover:text-white min-h-[44px]"
           >
             {locale === "fr" ? "Fermer" : "Close"}
           </button>
@@ -793,7 +793,7 @@ function MobileNavDrawer({ locale, open, onClose }: { locale: Locale; open: bool
               key={item.slug}
               href={`/${locale}/${item.slug}`}
               onClick={onClose}
-              className="flex items-center justify-between border-b border-white/10 py-3 text-white/80 hover:text-white"
+              className="flex items-center justify-between border-b border-white/10 py-4 text-white/80 hover:text-white min-h-[48px]"
             >
               <span>{item.labels[locale]}</span>
               <span>&gt;</span>

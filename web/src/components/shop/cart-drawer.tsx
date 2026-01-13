@@ -64,29 +64,27 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
 
   return (
     <div
-      className={`fixed inset-0 z-50 transition ${
-        open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-      }`}
+      className={`fixed inset-0 z-50 transition ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full max-w-lg flex-col overscroll-contain bg-[#0c0c0c] text-white transition-transform duration-500 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`absolute right-0 top-0 flex h-full w-full max-w-[100vw] sm:max-w-lg flex-col overscroll-contain bg-[#0c0c0c] text-white transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
-        <div className="flex items-center justify-between border-b border-white/10 px-8 py-6">
+        <div className="flex items-center justify-between border-b border-white/10 px-4 py-4 sm:px-8 sm:py-6">
           <div>
             <p className="text-[0.6rem] uppercase tracking-[0.5em] text-white/60">
               {locale === "fr" ? "Panier" : "Cart"}
             </p>
-            <h2 className="font-display text-3xl">{locale === "fr" ? "Edition Maison" : "Maison Edition"}</h2>
+            <h2 className="font-display text-2xl sm:text-3xl">{locale === "fr" ? "Edition Maison" : "Maison Edition"}</h2>
           </div>
-          <button onClick={onClose} className="rounded-full border border-white/20 p-2 text-white/70 hover:text-white">
-            <X />
+          <button onClick={onClose} className="rounded-full border border-white/20 p-3 text-white/70 hover:text-white min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <X size={20} />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-8 pb-6 pt-4">
+        <div className="flex-1 overflow-y-auto px-4 pb-6 pt-4 sm:px-8">
           {isEmpty ? (
             <div className="flex flex-1 flex-col items-center justify-center text-center text-white/60">
               <p className="text-sm uppercase tracking-[0.5em]">{locale === "fr" ? "Votre selection est vide" : "Your selection is empty"}</p>
@@ -101,9 +99,9 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
               {cart.items.map((item) => (
                 <li
                   key={item.id}
-                  className="flex gap-4 rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur"
+                  className="flex gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur"
                 >
-                  <div className="relative h-28 w-24 flex-shrink-0 overflow-hidden rounded-2xl bg-black/30">
+                  <div className="relative h-20 w-16 sm:h-28 sm:w-24 flex-shrink-0 overflow-hidden rounded-xl sm:rounded-2xl bg-black/30">
                     {item.heroImage && (
                       <Image
                         src={item.heroImage}
@@ -123,7 +121,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
                           </p>
                           <Link
                             href={`/${locale}/products/${item.productSlug}`}
-                            className="font-display text-xl text-white hover:opacity-80"
+                            className="font-display text-base sm:text-xl text-white hover:opacity-80"
                           >
                             {item.productName}
                           </Link>
@@ -142,7 +140,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => mutateQuantity(item.id, item.quantity - 1)}
-                          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-sm"
+                          className="flex h-10 w-10 sm:h-8 sm:w-8 items-center justify-center rounded-full border border-white/20 text-sm min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0"
                           disabled={isPending && pendingItem === item.id}
                         >
                           -
@@ -150,7 +148,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
                         <span className="w-8 text-center text-sm tracking-[0.3em]">{item.quantity}</span>
                         <button
                           onClick={() => mutateQuantity(item.id, item.quantity + 1)}
-                          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-sm"
+                          className="flex h-10 w-10 sm:h-8 sm:w-8 items-center justify-center rounded-full border border-white/20 text-sm min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0"
                           disabled={isPending && pendingItem === item.id}
                         >
                           +
@@ -167,7 +165,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
           )}
         </div>
 
-        <div className="border-t border-white/10 px-8 py-6">
+        <div className="border-t border-white/10 px-4 py-4 sm:px-8 sm:py-6">
           <div className="flex items-center justify-between text-sm uppercase tracking-[0.35em] text-white/60">
             <span>{locale === "fr" ? "Sous-total" : "Subtotal"}</span>
             <span className="text-white">{formatPrice(cart.subtotalCents)}</span>
@@ -180,9 +178,8 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
           <Link
             href={`/${locale}/cart`}
             onClick={onClose}
-            className={`mt-6 block rounded-full bg-white/90 px-6 py-4 text-center text-sm uppercase tracking-[0.4em] text-black transition hover:bg-white ${
-              isEmpty ? "pointer-events-none opacity-40" : ""
-            }`}
+            className={`mt-6 block rounded-full bg-white/90 px-6 py-4 text-center text-sm uppercase tracking-[0.4em] text-black transition hover:bg-white ${isEmpty ? "pointer-events-none opacity-40" : ""
+              }`}
           >
             {locale === "fr" ? "Passer en caisse" : "Proceed to checkout"}
           </Link>
