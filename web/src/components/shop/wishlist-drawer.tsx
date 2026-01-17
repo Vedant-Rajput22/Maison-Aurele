@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
@@ -25,16 +27,25 @@ export function WishlistDrawer({
   pending,
   pendingId,
 }: Props) {
+  const [mounted, setMounted] = useState(false);
   const isEmpty = wishlist.items.length === 0;
 
-  return (
+  // Handle SSR - only render portal on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Don't render on server to avoid hydration mismatch
+  if (!mounted) return null;
+
+  const drawerContent = (
     <div
-      className={`fixed inset-0 z-40 transition ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+      className={`fixed inset-0 z-[9999] isolate transition ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
     >
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 z-[9998] bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <aside
-        className={`absolute left-0 top-0 h-full w-full max-w-[100vw] sm:max-w-lg border-r border-white/10 bg-[#111111] text-white transition-transform duration-500 ${open ? "translate-x-0" : "-translate-x-full"
+        className={`absolute left-0 top-0 z-[9999] h-full w-full max-w-[100vw] sm:max-w-lg border-r border-white/10 bg-[#111111] text-white transition-transform duration-500 ${open ? "translate-x-0" : "-translate-x-full"
           }`}
       >
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-4 sm:px-8 sm:py-6">
@@ -115,6 +126,8 @@ export function WishlistDrawer({
       </aside>
     </div>
   );
+
+  return createPortal(drawerContent, document.body);
 }
 
 function formatPrice(priceCents: number | null | undefined, locale: Locale) {

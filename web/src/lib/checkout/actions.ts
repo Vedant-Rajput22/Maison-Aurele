@@ -1,7 +1,7 @@
 "use server";
 
 import type { Locale } from "@/lib/i18n/config";
-import { getCartSnapshot } from "@/lib/cart/actions";
+import { getCartSnapshot, ensureCartUserAssociation } from "@/lib/cart/actions";
 import { stripe, getAppBaseUrl } from "@/lib/stripe";
 import { getCurrentUser } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
@@ -24,6 +24,12 @@ export async function startCheckoutAction(
 ): Promise<CheckoutResult> {
   const cart = await getCartSnapshot(locale);
   const currentUser = await getCurrentUser();
+
+  // Ensure cart is associated with the user if logged in
+  if (currentUser && cart.cartId) {
+    await ensureCartUserAssociation(cart.cartId, currentUser.id);
+  }
+
   if (cart.itemCount === 0) {
     return {
       ok: false,
@@ -87,11 +93,11 @@ export async function startCheckoutAction(
     shipping_address_collection: shippingAddress
       ? undefined
       : {
-          allowed_countries: [
-            "FR", "US", "GB", "DE", "IT", "ES", "CH", "BE", "NL",
-            "JP", "CN", "AE", "SG", "AU", "CA", "AT", "PT", "IE",
-          ],
-        },
+        allowed_countries: [
+          "FR", "US", "GB", "DE", "IT", "ES", "CH", "BE", "NL",
+          "JP", "CN", "AE", "SG", "AU", "CA", "AT", "PT", "IE",
+        ],
+      },
   };
 
   // If we have a shipping address, pre-fill it in Stripe

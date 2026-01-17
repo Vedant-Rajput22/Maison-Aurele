@@ -125,7 +125,7 @@ export function HeroScene({
   return (
     <section
       ref={sectionRef}
-      className="relative isolate h-screen w-full overflow-hidden"
+      className="relative isolate z-0 h-screen w-full overflow-hidden"
     >
       {/* Video Background */}
       <video

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
@@ -19,7 +20,13 @@ type Props = {
 export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props) {
   const [pendingItem, setPendingItem] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [mounted, setMounted] = useState(false);
   const isEmpty = cart.items.length === 0;
+
+  // Handle SSR - only render portal on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const body = document.body;
@@ -62,14 +69,17 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
       maximumFractionDigits: 0,
     }).format(value / 100);
 
-  return (
+  // Don't render on server to avoid hydration mismatch
+  if (!mounted) return null;
+
+  const drawerContent = (
     <div
-      className={`fixed inset-0 z-50 transition ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+      className={`fixed inset-0 z-[9999] isolate transition ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
     >
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 z-[9998] bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full max-w-[100vw] sm:max-w-lg flex-col overflow-hidden overscroll-contain bg-[#0c0c0c] text-white transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"
+        className={`absolute right-0 top-0 z-[9999] flex h-full w-full max-w-[100vw] sm:max-w-lg flex-col overflow-hidden overscroll-contain bg-[#0c0c0c] text-white transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-4 sm:px-8 sm:py-6">
@@ -187,5 +197,7 @@ export function CartDrawer({ locale, open, cart, onClose, onCartChange }: Props)
       </aside>
     </div>
   );
+
+  return createPortal(drawerContent, document.body);
 }
 

@@ -138,6 +138,24 @@ export async function getCartSnapshot(locale: Locale): Promise<CartSnapshot> {
   return mapCartToSnapshot(cart);
 }
 
+/**
+ * Ensures a cart is associated with a specific user ID.
+ * This should be called before checkout to guarantee orders are linked to users.
+ */
+export async function ensureCartUserAssociation(cartId: string, userId: string): Promise<void> {
+  const cart = await prisma.cart.findUnique({
+    where: { id: cartId },
+    select: { userId: true },
+  });
+
+  if (cart && !cart.userId) {
+    await prisma.cart.update({
+      where: { id: cartId },
+      data: { userId },
+    });
+  }
+}
+
 export async function addToCartAction(input: { variantId: string; quantity?: number; locale: Locale }) {
   const quantity = Math.max(1, input.quantity ?? 1);
   const variant = await prisma.productVariant.findUnique({

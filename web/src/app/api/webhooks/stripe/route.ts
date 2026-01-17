@@ -89,11 +89,14 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   const totalCents = session.amount_total ?? subtotalCents;
   const orderNumber = generateOrderNumber();
 
+  // Use cart userId, or fallback to metadata userId if cart wasn't associated
+  const orderUserId = cart.userId ?? (session.metadata?.userId || undefined);
+
   const order = await prisma.$transaction(async (tx) => {
     const order = await tx.order.create({
       data: {
         number: orderNumber,
-        userId: cart.userId ?? undefined,
+        userId: orderUserId,
         currency: cart.currency,
         subtotalCents,
         taxCents: 0, // Stripe might provide tax details in total_details if configured

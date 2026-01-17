@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -13,6 +13,7 @@ import {
 } from "@/lib/cart/actions";
 import { startCheckoutAction } from "@/lib/checkout/actions";
 import { clearCartSessionAction } from "@/lib/cart/clear-session-action";
+import { useCommerce } from "@/components/commerce/commerce-provider";
 import { AddressForm, AddressModal } from "@/components/account/address-components";
 
 type Props = {
@@ -25,18 +26,36 @@ type Props = {
 
 export function CartPageClient({ locale, initialCart, isLoggedIn, addresses: initialAddresses, checkoutSuccess }: Props) {
   const router = useRouter();
+  const { clearCart } = useCommerce();
+  const hasCleared = useRef(false);
 
-  // Clear cart session on checkout success
+  // Use empty cart if checkout was successful, otherwise use initial cart
+  const effectiveInitialCart = checkoutSuccess ? {
+    cartId: null,
+    currency: initialCart.currency,
+    itemCount: 0,
+    subtotalCents: 0,
+    items: [],
+  } : initialCart;
+
+  const [cart, setCart] = useState(effectiveInitialCart);
+
+  // Store clearCart in a ref to avoid stale closure
+  const clearCartRef = useRef(clearCart);
   useEffect(() => {
-    if (checkoutSuccess) {
-      clearCartSessionAction().then(() => {
-        // Optionally refresh the page to get updated cart state
-        router.refresh();
-      });
-    }
-  }, [checkoutSuccess, router]);
+    clearCartRef.current = clearCart;
+  }, [clearCart]);
 
-  const [cart, setCart] = useState(initialCart);
+  // Clear cart session and global context on checkout success
+  useEffect(() => {
+    if (checkoutSuccess && !hasCleared.current) {
+      hasCleared.current = true;
+      // Immediately clear the global cart context so sidebar shows empty
+      clearCartRef.current();
+      // Also clear the cart session cookie via server action (background)
+      clearCartSessionAction();
+    }
+  }, [checkoutSuccess]);
   const [addresses] = useState(initialAddresses);
   const [pendingId, setPendingId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();

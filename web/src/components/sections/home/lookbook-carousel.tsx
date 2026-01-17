@@ -130,7 +130,7 @@ export function LookbookCarousel({
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen overflow-hidden"
+      className="relative z-0 min-h-screen overflow-hidden"
       style={{ backgroundColor: "var(--parchment)" }}
     >
       {/* Background texture */}
@@ -172,10 +172,10 @@ export function LookbookCarousel({
                   <div
                     key={i}
                     className={`h-1 w-8 rounded-full transition-all duration-500 ${i === activeIndex
-                        ? "bg-[var(--gilded-rose)]"
-                        : i < activeIndex
-                          ? "bg-[var(--espresso)]/30"
-                          : "bg-[var(--espresso)]/10"
+                      ? "bg-[var(--gilded-rose)]"
+                      : i < activeIndex
+                        ? "bg-[var(--espresso)]/30"
+                        : "bg-[var(--espresso)]/10"
                       }`}
                   />
                 ))}
