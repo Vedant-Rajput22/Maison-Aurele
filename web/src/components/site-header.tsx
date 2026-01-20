@@ -171,7 +171,7 @@ export function SiteHeader({ locale, user }: { locale: Locale; user: HeaderUser 
           <Link
             href={`/${locale}`}
             className={cn(
-              "group relative font-display text-sm tracking-[0.9em] transition-colors duration-500 md:text-base",
+              "group relative font-display text-sm tracking-[0.9em] transition-colors duration-500 md:text-base text-center",
               scrolled ? "text-[var(--espresso)]" : "text-white",
             )}
           >

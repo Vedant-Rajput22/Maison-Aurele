@@ -151,27 +151,27 @@ function ShopNavigation({
 
   const styles = scrolled
     ? {
-        wrapper: "bg-white/95 border-b border-white/40 text-ink shadow-[0_10px_40px_rgba(5,5,5,0.08)]",
-        text: "text-ink",
-        border: "border-ink/30",
-        badge: "bg-ink text-white",
-        blur: "backdrop-blur",
-      }
+      wrapper: "bg-white/95 border-b border-white/40 text-ink shadow-[0_10px_40px_rgba(5,5,5,0.08)]",
+      text: "text-ink",
+      border: "border-ink/30",
+      badge: "bg-ink text-white",
+      blur: "backdrop-blur",
+    }
     : forceDark
       ? {
-          wrapper: "bg-transparent border-b border-transparent text-ink",
-          text: "text-ink",
-          border: "border-ink/40",
-          badge: "bg-ink text-white",
-          blur: "",
-        }
+        wrapper: "bg-transparent border-b border-transparent text-ink",
+        text: "text-ink",
+        border: "border-ink/40",
+        badge: "bg-ink text-white",
+        blur: "",
+      }
       : {
-          wrapper: "bg-transparent border-b border-transparent text-white",
-          text: "text-white",
-          border: "border-white/50",
-          badge: "bg-white text-ink",
-          blur: "",
-        };
+        wrapper: "bg-transparent border-b border-transparent text-white",
+        text: "text-white",
+        border: "border-white/50",
+        badge: "bg-white text-ink",
+        blur: "",
+      };
 
   const iconButtonBase =
     "relative flex h-10 w-10 items-center justify-center rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
@@ -199,7 +199,7 @@ function ShopNavigation({
           </button>
         </div>
         <div className="flex flex-1 basis-0 justify-center">
-          <Link href={`/${locale}/shop`} className={`font-display text-sm tracking-[0.7em] ${styles.text}`}>
+          <Link href={`/${locale}/shop`} className={`font-display text-sm tracking-[0.7em] text-center ${styles.text}`}>
             Maison Aurele
           </Link>
         </div>
