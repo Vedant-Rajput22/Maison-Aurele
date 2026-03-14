@@ -40,3 +40,6 @@ src/generated/prisma/
 
 *.pem
 *.log
+
+# Compiled C++ binaries
+solution
